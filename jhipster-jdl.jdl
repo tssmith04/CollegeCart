@@ -1,0 +1,37 @@
+
+application {
+  config {
+    baseName CollegeCart
+    applicationType monolith
+    packageName com.collegecart.backend.config
+    buildTool maven
+    authenticationType oauth2
+    prodDatabaseType mysql
+    clientFramework react
+    nativeLanguage en
+    databaseType mysql
+  }
+  entities *
+}
+
+
+entity UserTable {
+	firstName String required
+    lastName String required
+    phoneNumber String required pattern(/^\\d{10}$/)
+    email String required pattern(/^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/)
+    residentialCommunity String required
+    ordersSuccessfullyDelivered Integer
+    ordersSuccessfullyPlaced Integer
+    uid Integer
+}
+
+entity OrderTable {
+	ordererUID Integer required
+    delivererUID Integer
+    itemList String required
+    deliveryFee Double 
+    storeName String required
+    acceptedStatus Boolean
+    datePosted String required
+}
