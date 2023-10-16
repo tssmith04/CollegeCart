@@ -15,7 +15,7 @@ function HomeScreen(props) {
         <View style={styles.centered}>
           <Image source={Images.logoJhipster} style={styles.logo} />
           <Text style={styles.welcomeText}>RnApp</Text>
-          <Text style={styles.welcomeText}>Welcome to your JHipster React Native app.</Text>
+          <Text style={styles.welcomeText}>Welcome to CollegeCart!.</Text>
         </View>
         {account && account.login ? (
           <View style={[styles.authContainer, styles.authContainerTrue]} testID="authDisplayTrue">
