@@ -39,6 +39,14 @@ public class User extends AbstractAuditingEntity<String> implements Serializable
     @Size(max = 50)
     @Column(name = "last_name", length = 50)
     private String lastName;
+    
+    @Size(max = 50)
+    @Column(name = "residence_hall", length = 50)
+    private String residenceHall;
+
+    @Size(max = 50)
+    @Column(name = "phone_number", length = 50)
+    private String phone_number;
 
     @Email
     @Size(min = 5, max = 254)
@@ -131,6 +139,19 @@ public class User extends AbstractAuditingEntity<String> implements Serializable
     public void setLangKey(String langKey) {
         this.langKey = langKey;
     }
+    public void setResidenceHall(String residence) {
+        this.residenceHall = residence;
+    }
+    public String getResidenceHall(){
+        return residenceHall;
+    }
+    
+    public void setPhoneNumber(String phone) {
+        this.phone_number = phone;
+    }
+    public String getPhoneNumber(){
+        return phone_number;
+    }
 
     public Set<Authority> getAuthorities() {
         return authorities;
@@ -168,6 +189,8 @@ public class User extends AbstractAuditingEntity<String> implements Serializable
             ", imageUrl='" + imageUrl + '\'' +
             ", activated='" + activated + '\'' +
             ", langKey='" + langKey + '\'' +
+            ", phoneNumber='" + phone_number + '\'' +
+            ", residenceHall='" + residenceHall + '\'' +
             "}";
     }
 }

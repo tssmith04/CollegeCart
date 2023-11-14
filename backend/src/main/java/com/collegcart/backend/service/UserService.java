@@ -52,8 +52,10 @@ public class UserService {
      * @param email     email id of user.
      * @param langKey   language key.
      * @param imageUrl  image URL of user.
+     * @param phoneNumber phone number of user.
+     * @param residenceHall residence hall of user.
      */
-    public void updateUser(String firstName, String lastName, String email, String langKey, String imageUrl) {
+    public void updateUser(String firstName, String lastName, String email, String langKey, String imageUrl, String phoneNumber, String residenceHall) {
         SecurityUtils
             .getCurrentUserLogin()
             .flatMap(userRepository::findOneByLogin)
@@ -63,8 +65,11 @@ public class UserService {
                 if (email != null) {
                     user.setEmail(email.toLowerCase());
                 }
+                user.setPhoneNumber(phoneNumber);
+                user.setResidenceHall(residenceHall);
                 user.setLangKey(langKey);
                 user.setImageUrl(imageUrl);
+                
                 this.clearUserCaches(user);
                 log.debug("Changed Information for User: {}", user);
             });
@@ -120,12 +125,12 @@ public class UserService {
                 }
                 if (idpModifiedDate.isAfter(dbModifiedDate)) {
                     log.debug("Updating user '{}' in local database", user.getLogin());
-                    updateUser(user.getFirstName(), user.getLastName(), user.getEmail(), user.getLangKey(), user.getImageUrl());
+                    updateUser(user.getFirstName(), user.getLastName(), user.getEmail(), user.getLangKey(), user.getImageUrl(), user.getPhoneNumber(), user.getResidenceHall());
                 }
                 // no last updated info, blindly update
             } else {
                 log.debug("Updating user '{}' in local database", user.getLogin());
-                updateUser(user.getFirstName(), user.getLastName(), user.getEmail(), user.getLangKey(), user.getImageUrl());
+                updateUser(user.getFirstName(), user.getLastName(), user.getEmail(), user.getLangKey(), user.getImageUrl(), user.getPhoneNumber(), user.getResidenceHall());
             }
         } else {
             log.debug("Saving user '{}' in local database", user.getLogin());
